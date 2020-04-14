@@ -11,5 +11,5 @@ RUN apk add python
 
 WORKDIR /www
 
-ENTRYPOINT ["python", "-m", "SimpleHTTPServer", "8000"]
+ENTRYPOINT ["python", "-m", "SimpleHTTPSever", "8000"]
 
