@@ -2,14 +2,14 @@ FROM alpine
 
 RUN /bin/sh
 
-RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+RUN apk add tzdata && \
+    cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
+    echo 'Asia/Seoul'	> /etc/timezone && \
+    apk del tzdata 
 
-RUN apk add tzdata
 RUN apk add python 
-
-ADD /www
 
 WORKDIR /www
 
-CMD ["python -m SimpleHTTPSever 8000"]
+ENTRYPOINT ["python", "-m", "SimpleHTTPSever", "8000"]
 
